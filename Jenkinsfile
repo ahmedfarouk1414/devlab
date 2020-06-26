@@ -1,9 +1,6 @@
 pipeline {
 
-  environment {
-    registry = "https://gcr.io"
-    dockerImage = ""
-  }
+
 
   agent any
 
@@ -19,7 +16,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build playjenkins + ":$BUILD_NUMBER"
       }
      }
    }
