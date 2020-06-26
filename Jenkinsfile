@@ -16,10 +16,13 @@ pipeline {
     }
 
 
-    
-    stage('Build Image') {
-    app = docker.build("http-loadbalance/playjenkins")
-}
+    stage('Build image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+      }
+     }
+   }
 
     stage('Push Image') {
       steps{
