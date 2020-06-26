@@ -2,6 +2,7 @@ pipeline {
 
   environment {
     registry = "https://gcr.io"
+    registryCredential = ‘playjenkins’
     dockerImage = ""
   }
 
