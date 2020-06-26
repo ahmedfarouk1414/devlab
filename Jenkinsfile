@@ -1,6 +1,9 @@
 pipeline {
 
-
+  environment {
+    registry = "myweb"
+    dockerImage = ""
+  }
 
   agent any
 
@@ -16,7 +19,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build playjenkins + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
       }
      }
    }
