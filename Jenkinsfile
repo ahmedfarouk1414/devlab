@@ -16,23 +16,17 @@ pipeline {
     }
 
 
-    stage('Build image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-      }
-     }
-   }
-
-    stage('Push Image') {
-      steps{
-        script {
-          docker.withRegistry( "" ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }
+    
+stage('Build image') {
+  app = docker.build("http-loadbalance/javabuild")
+}
+stage('Push image') {
+  docker.withRegistry('https://gcr.io', 'gcr:[playjenkins]') {
+    app.push("${env.BUILD_NUMBER}")
+    app.push("latest")
+  }
+}
+    
 
     stage('Deploy App') {
       steps {
