@@ -1,7 +1,6 @@
 pipeline {
 
   environment {
-    registry = "myweb"
     dockerImage = ""
   }
 
@@ -11,21 +10,27 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/ahmedfarouk1414/playjenkins.git'
+        git 'https://github.com/justmeandopensource/playjenkins.git'
       }
     }
 
-
-    
-   stage('Build image') {
+    stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build  + ":$BUILD_NUMBER"
         }
       }
     }
-}
-    
+
+    stage('Push Image') {
+      steps{
+        script {
+          docker.withRegistry( "" ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
 
     stage('Deploy App') {
       steps {
@@ -36,5 +41,7 @@ pipeline {
     }
 
   }
+
+}
 
 
