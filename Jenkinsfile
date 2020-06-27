@@ -24,7 +24,7 @@ pipeline {
     }
 
     stage('Push image') {
-      docker.withRegistry('https://gcr.io', 'gcr:[playjenkins]') {
+      docker.withRegistry('https://gcr.io', 'playjenkins') {
         app.push("${env.BUILD_NUMBER}")
         app.push("latest")
       }
