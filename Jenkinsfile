@@ -15,7 +15,13 @@ pipeline {
       }
     }
 
-
+    stage('Build image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
 
     stage('Push image') {
       docker.withRegistry('https://gcr.io', 'gcr:[playjenkins]') {
