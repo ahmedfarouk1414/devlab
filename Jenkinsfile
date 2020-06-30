@@ -14,7 +14,7 @@ pipeline {
         git 'https://github.com/ahmedfarouk1414/playjenkins.git'
       }
     }
-
+//
     stage('Build image') {
       steps{
         script {
