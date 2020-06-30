@@ -39,21 +39,21 @@ pipeline {
     
     
     //
-    stage('Build image') {
-      steps{
-        script {
-          dockerImage = docker.build  + ":$BUILD_NUMBER"
-        }
-      }
-    }
+  //  stage('Build image') {
+  //    steps{
+  //      script {
+   //       dockerImage = docker.build  + ":$BUILD_NUMBER"
+   //     }
+  //    }
+  //  }
     //
 
-    stage('Push image') {
-      docker.withRegistry('https://gcr.io/http-loadbalance', 'http-loadbalance') {
-        app.push("${env.BUILD_NUMBER}")
-        app.push("latest")
-      }
-}
+ //   stage('Push image') {
+ //     docker.withRegistry('https://gcr.io/http-loadbalance', 'http-loadbalance') {
+  //      app.push("${env.BUILD_NUMBER}")
+  //      app.push("latest")
+  //    }
+//}
 
 
 
