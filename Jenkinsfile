@@ -9,12 +9,15 @@ pipeline {
   }
 
   agent {
-        agent none
+        agent none\\\\\\\\\\\\\
         docker { image 'ahmedfarouk141414/push:latest' }
     }
   
   stages {
-
+     agent {
+                docker { image 'maven:3-alpine' }
+            }
+    
     stage('Checkout Source') {
       steps {
         git 'https://github.com/ahmedfarouk1414/playjenkins.git'
@@ -22,6 +25,9 @@ pipeline {
     }
     
     stage('Deploy'){
+           agent {
+                docker { image 'maven:3-alpine' }
+            }
     steps{
         script {
             withCredentials([file(credentialsId: 'push', variable: 'GC_KEY')]){
