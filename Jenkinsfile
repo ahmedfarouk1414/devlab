@@ -9,8 +9,8 @@ pipeline {
   }
 
   agent {
-         label 'default'
-        }
+        docker { image 'ahmedfarouk141414/push:latest' }
+    }
   
   stages {
 
