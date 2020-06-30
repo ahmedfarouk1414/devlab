@@ -23,7 +23,7 @@ pipeline {
     
     stage('Deploy'){
     steps{
-
+        script {
             withCredentials([file(credentialsId: 'push', variable: 'GC_KEY')]){
               sh "cat '$GC_KEY' | docker login -u _json_key --password-stdin https://gcr.io"
               sh "gcloud auth activate-service-account --key-file='$GC_KEY'"
@@ -35,8 +35,8 @@ pipeline {
               echo "Pushing image To GCR"
               sh "docker push eu.gcr.io/${http-loadbalance}/${image_name}:${image-tag}"
           }
+       }
     }
-    
     
     //
   //  stage('Build image') {
