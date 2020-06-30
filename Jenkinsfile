@@ -1,11 +1,11 @@
 pipeline {
 
   environment {
-    SERVER_CREDENTIALS = credentials('playjenkins')
+    SERVER_CREDENTIALS = credentials('push')
     dockerImage = ""
   }
 
-  agent any
+  agent default
 
   stages {
 
@@ -24,7 +24,7 @@ pipeline {
     }
 
     stage('Push image') {
-      docker.withRegistry('https://gcr.io', 'playjenkins') {
+      docker.withRegistry('https://gcr.io/http-loadbalance', 'http-loadbalance') {
         app.push("${env.BUILD_NUMBER}")
         app.push("latest")
       }
