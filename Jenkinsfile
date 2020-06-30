@@ -35,7 +35,7 @@ pipeline {
               echo "Pushing image To GCR"
               sh "docker push eu.gcr.io/${http-loadbalance}/${image_name}:${image-tag}"
           }
-
+    }
     
     
     //
