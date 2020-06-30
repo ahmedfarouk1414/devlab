@@ -5,8 +5,10 @@ pipeline {
     dockerImage = ""
   }
 
-  agent default
-
+  agent {
+         label 'slave'
+        }
+  
   stages {
 
     stage('Checkout Source') {
