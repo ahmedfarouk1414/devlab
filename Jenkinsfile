@@ -6,7 +6,6 @@ pipeline {
     GC_KEY = push.json
     google_projectname = http-loadbalance
     image_name = nginxlb
-    image-tag = v1
   }
 
   agent {
@@ -33,7 +32,7 @@ pipeline {
                     returnStdout: true
                 ).trim()
               echo "Pushing image To GCR"
-              sh "docker push eu.gcr.io/${http-loadbalance}/${image_name}:${image-tag}"
+              sh "docker push eu.gcr.io/${http-loadbalance}/${image_name}:v1"
           }
        }
      }
