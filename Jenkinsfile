@@ -9,7 +9,7 @@ pipeline {
   }
 
   agent {
-         label 'any'
+         label 'default'
         }
   
   stages {
