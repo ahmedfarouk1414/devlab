@@ -9,7 +9,7 @@ pipeline {
   }
 
   agent {
-         label 'slave'
+         label 'default'
         }
   
   stages {
