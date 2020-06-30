@@ -9,7 +9,6 @@ pipeline {
   }
 
   agent {
-        agent none\\\\\\\\\\\\\
         docker { image 'ahmedfarouk141414/push:latest' }
     }
   
