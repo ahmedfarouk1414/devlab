@@ -6,7 +6,7 @@ pipeline {
     GC_KEY = push.json
     google_projectname = http-loadbalance
     image_name = nginxlb
-    image-tag  = v1
+    image-tag = v1
   }
 
   agent {
