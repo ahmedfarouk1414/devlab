@@ -36,8 +36,8 @@ pipeline {
               sh "docker push eu.gcr.io/${http-loadbalance}/${image_name}:${image-tag}"
           }
        }
+     }
     }
-    
     //
   //  stage('Build image') {
   //    steps{
