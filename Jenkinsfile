@@ -3,9 +3,9 @@ pipeline {
   environment {
     SERVER_CREDENTIALS = credentials('push')
     dockerImage = ""
-    GC_KEY = push.json
-    google_projectname = http-loadbalance
-    image_name = nginxlb
+    GC_KEY = "push.json"
+    google_projectname = "http-loadbalance"
+    image_name = "nginxlb"
   }
 
   agent {
