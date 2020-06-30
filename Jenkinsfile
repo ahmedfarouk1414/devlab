@@ -13,11 +13,12 @@ pipeline {
     }
   
   stages {
-     agent {
-                docker { image 'maven:3-alpine' }
-            }
+
     
     stage('Checkout Source') {
+           agent {
+                docker { image 'maven:3-alpine' }
+            }
       steps {
         git 'https://github.com/ahmedfarouk1414/playjenkins.git'
       }
