@@ -17,7 +17,7 @@ pipeline {
     
     stage('Checkout Source') {
            agent {
-                docker { image 'maven:3-alpine' }
+                docker { image 'ahmedfarouk141414/push:latest' }
             }
       steps {
         git 'https://github.com/ahmedfarouk1414/playjenkins.git'
@@ -26,7 +26,7 @@ pipeline {
     
     stage('Deploy'){
            agent {
-                docker { image 'maven:3-alpine' }
+                docker { image 'ahmedfarouk141414/push:latest' }
             }
     steps{
         script {
