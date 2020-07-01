@@ -16,7 +16,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: gcr.io/http-loadbalance/playjenkins
+      - image: ahmedfarouk141414/playjenkins:latest
         imagePullPolicy: Always
         name: myweb
 
