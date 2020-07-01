@@ -21,26 +21,26 @@ pipeline {
       }
     }
     
-    stage('Deploy'){
-          agent {
-          label 'slave' 
+   // stage('Deploy'){
+     //     agent {
+     //     label 'slave' 
           }
-    steps{
-        script {
-            withCredentials([file(credentialsId: 'push', variable: 'GC_KEY')]){
+   // steps{
+       // script {
+          //  withCredentials([file(credentialsId: 'push', variable: 'GC_KEY')]){
              // sh "cat '$GC_KEY' | docker login -u _json_key --password-stdin https://gcr.io"
-              sh "gcloud auth activate-service-account --key-file='$GC_KEY'"
-              sh "gcloud auth configure-docker"
-              GLOUD_AUTH = sh (
-                    script: 'gcloud auth print-access-token',
-                    returnStdout: true
-                ).trim()
-              echo "Pushing image To GCR"
-              sh "docker push gcr.io/${http-loadbalance}/${image_name}:v1"
-          }
-       }
-     }
-    }
+           //   sh "gcloud auth activate-service-account --key-file='$GC_KEY'"
+           //   sh "gcloud auth configure-docker"
+           //   GLOUD_AUTH = sh (
+            //        script: 'gcloud auth print-access-token',
+           //         returnStdout: true
+          //      ).trim()
+          //    echo "Pushing image To GCR"
+          //    sh "docker push gcr.io/${http-loadbalance}/${image_name}:v1"
+       //   }
+      // }
+    // }
+    //}
     //
   //  stage('Build image') {
   //    steps{
