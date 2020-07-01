@@ -9,25 +9,22 @@ pipeline {
   }
 
   agent {
-        docker { image 'ahmedfarouk141414/push:latest' }
-    }
-  
+          label 'slave' 
+        }
   stages {
 
     
     stage('Checkout Source') {
-           agent {
-                docker { image 'ahmedfarouk141414/push:latest' }
-            }
-      steps {
+      
+        steps {
         git 'https://github.com/ahmedfarouk1414/playjenkins.git'
       }
     }
     
     stage('Deploy'){
-           agent {
-                docker { image 'ahmedfarouk141414/push:latest' }
-            }
+          agent {
+          label 'slave' 
+          }
     steps{
         script {
             withCredentials([file(credentialsId: 'push', variable: 'GC_KEY')]){
