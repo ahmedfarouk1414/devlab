@@ -19,7 +19,7 @@ pipeline {
         steps {
         git 'https://github.com/ahmedfarouk1414/playjenkins.git'
       }
-    }
+   // }
     
    // stage('Deploy'){
      //     agent {
