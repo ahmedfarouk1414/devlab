@@ -1,8 +1,8 @@
  prepaer and install minikube 
 
   - sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'  
-    [docker-ce-edge]
-    name=Docker CE Edge - $basearch
+  -  [docker-ce-edge]
+  -  name=Docker CE Edge - $basearch
     baseurl=https://download.docker.com/linux/centos/7/$basearch/edge
     enabled=1
     gpgcheck=1
