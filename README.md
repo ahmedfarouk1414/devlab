@@ -45,11 +45,12 @@
         [Entrypoint] GENERATED ROOT PASSWORD: K@N@Soq)oMerJ0SIkMized4BEj@r
   - docker exec -it [container_name] mysql -uroot -p
        K@N@Soq)oMerJ0SIkMized4BEj@r
+       
     mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'ahmed';
          > create databases toystore
          
-  - cat toystore-test.sql| docker exec -i mysql /usr/bin/mysql -u root --password=ahmed mysql
-    - docker commit mysql mysqldump
-    - docker tag mysql  ahmedfarouk141414/toystore:v1
+  - cat toystore-test.sql  | docker exec -i mysql /usr/bin/mysql -u root --password=ahmed mysql
+  - docker commit mysql mysqldump
+  - docker tag mysql  ahmedfarouk141414/toystore:v1
   - docker push  ahmedfarouk141414/toystore:v1
 
