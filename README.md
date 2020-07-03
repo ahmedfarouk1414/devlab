@@ -32,3 +32,8 @@
 ## install jenkins from helm 
    - kubectl inspect stable/jenkins > /tmp/jenkins-values
    - helm install --name jenkins stable/jenkins --namespace build  --values jenkins-values     ### from my repo 
+   
+## create pipline for deployment 
+
+## create nexus 
+
