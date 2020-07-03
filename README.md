@@ -34,6 +34,7 @@
    - helm install --name jenkins stable/jenkins --namespace build  --values jenkins-values     ### from my repo 
    
 ## create pipline for deployment 
+  - kubectl apply -f https://raw.githubusercontent.com/ahmedfarouk1414/playjenkins/master/nexus.yaml    ### from myrepo
 
 ## create nexus 
 
