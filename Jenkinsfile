@@ -9,7 +9,8 @@ pipeline {
         NEXUS_URL = "http://35.239.47.198:32322"   // ip add nexus server 
         NEXUS_REPOSITORY = "dockerhub"            // name repositry
         NEXUS_CREDENTIAL_ID = "nexus"             // name credienails id  in jenkins
-
+    }
+    
 pipeline {
     agent slave
        environment {
@@ -65,4 +66,4 @@ pipeline {
             }
         }
     }
-//}
+}
