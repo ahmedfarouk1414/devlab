@@ -34,7 +34,22 @@
    - helm install --name jenkins stable/jenkins --namespace build  --values jenkins-values     ### from my repo 
    
 ## create pipline for deployment 
-  - kubectl apply -f https://raw.githubusercontent.com/ahmedfarouk1414/playjenkins/master/nexus.yaml    ### from myrepo
 
 ## create nexus 
+    - kubectl apply -f https://raw.githubusercontent.com/ahmedfarouk1414/playjenkins/master/nexus.yaml    ### from myrepo##
+
+## create databases
+  - docker pull mysql/mysql-server:latest
+  - docker run --name=mysql -d mysql/mysql-server:latest
+  - docker logs 64d781449723 | grep -i pass
+        [Entrypoint] GENERATED ROOT PASSWORD: K@N@Soq)oMerJ0SIkMized4BEj@r
+  - docker exec -it [container_name] mysql -uroot -p
+       K@N@Soq)oMerJ0SIkMized4BEj@r
+    mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'ahmed';
+         > create databases toystore
+         
+  - cat toystore-test.sql| docker exec -i mysql /usr/bin/mysql -u root --password=ahmed mysql
+    - docker commit mysql mysqldump
+    - docker tag mysql  ahmedfarouk141414/toystore:v1
+  - docker push  ahmedfarouk141414/toystore:v1
 
