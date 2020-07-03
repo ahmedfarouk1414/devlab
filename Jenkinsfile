@@ -9,7 +9,7 @@ pipeline {
           NEXUS_REPOSITORY = "dockerhub"            // name repositry
          NEXUS_CREDENTIAL_ID = "nexus"             // name credienails id  in jenkins
     }
-    }
+    
     stages {
         stage('Build') {
             steps {
