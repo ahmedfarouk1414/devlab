@@ -26,3 +26,9 @@
 ## install helm 
  - kubectl apply -f https://raw.githubusercontent.com/ahmedfarouk1414/playjenkins/master/helm.sh ### from my own repo 
    
+## add slave container as pod that containe custem dependence for java 
+
+
+## install jenkins from helm 
+   - kubectl inspect stable/jenkins > /tmp/jenkins-values
+   - helm install --name jenkins stable/jenkins --namespace build  --values jenkins-values     ### from my repo 
