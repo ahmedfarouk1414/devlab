@@ -24,4 +24,5 @@
   - echo "source <(kubectl completion bash)" >> ~/.bashrc
 
 ## install helm 
+ - kubectl apply -f https://raw.githubusercontent.com/ahmedfarouk1414/playjenkins/master/helm.sh ### from my own repo 
    
