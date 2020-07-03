@@ -1,20 +1,14 @@
-pipeline {
-    agent {
-        label "slave"
-    }
-
-    environment {
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "http://35.239.47.198:32322"   // ip add nexus server 
-        NEXUS_REPOSITORY = "dockerhub"            // name repositry
-        NEXUS_CREDENTIAL_ID = "nexus"             // name credienails id  in jenkins
-    }
-    
+   
 pipeline {
     agent slave
        environment {
           DOCKER_IMAGE_NAME = "ahmedfarouk141414/http"
+          NEXUS_VERSION = "nexus3"
+          NEXUS_PROTOCOL = "http"
+          NEXUS_URL = "http://35.239.47.198:32322"   // ip add nexus server 
+          NEXUS_REPOSITORY = "dockerhub"            // name repositry
+         NEXUS_CREDENTIAL_ID = "nexus"             // name credienails id  in jenkins
+    }
     }
     stages {
         stage('Build') {
