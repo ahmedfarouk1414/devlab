@@ -78,8 +78,8 @@ that will use to build and push image also
   - docker push  ahmedfarouk141414/toystore:v1
 
 ## deployment database myapp 
-
-  - kubectl apply -f manifest/db/   . 
+  - cd manifest/db
+  - kubectl apply -f . 
 
 ## deployment app myapp 
   - use env varible in  application.properties and configfile will replace this values 
@@ -87,8 +87,9 @@ that will use to build and push image also
    	spring.datasource.url=${spring.datasource.url}
 	spring.datasource.username=${spring.datasource.username}
 	spring.datasource.password=${spring.datasource.password}
-
-  - kubectl apply -f manifest/spring/  .
+	
+  - cd manifest/spring/
+  - kubectl apply -f  .
 
 
 
