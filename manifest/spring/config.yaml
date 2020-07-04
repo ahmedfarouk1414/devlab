@@ -4,6 +4,6 @@ metadata:
   name: spring-boot-bootstrap
 data:
   application.properties: |-
-    spring.datasource.url=jdbc:mysql://35.188.180.98:32324/toystore
+    spring.datasource.url=jdbc:mysql://spring-db:3306/toystore
     spring.datasource.username=root
     spring.datasource.password=ahmed
