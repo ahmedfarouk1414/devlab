@@ -65,7 +65,8 @@ that will use to build and push image also
   - docker pull mysql/mysql-server:latest
   - docker run --name=mysql -d mysql/mysql-server:latest
   - docker logs 64d781449723 | grep -i pass
-        [Entrypoint] GENERATED ROOT PASSWORD: K@N@Soq)oMerJ0SIkMized4BEj@r
+  
+	
   - docker exec -it [container_name] mysql -uroot -p
        K@N@Soq)oMerJ0SIkMized4BEj@r
        
@@ -84,9 +85,9 @@ that will use to build and push image also
 ## deployment app myapp 
   - use env varible in  application.properties and configfile will replace this values 
 
-   	spring.datasource.url=${spring.datasource.url}
-	spring.datasource.username=${spring.datasource.username}
-	spring.datasource.password=${spring.datasource.password}
+   	- spring.datasource.url=${spring.datasource.url}
+	- spring.datasource.username=${spring.datasource.username}
+	- spring.datasource.password=${spring.datasource.password}
 	
   - cd manifest/spring/
   - kubectl apply -f  .
