@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toystore-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: toystore
+  template:
+    metadata:
+      labels:
+        app: toystore
+    spec:
+      containers:
+      - name: toystore
+        image: ahmedfarouk141414/orange:latest
+        ports:
+        - name: http-port
+          containerPort: 8080
+        env:
+        - name: spring.datasource.url
+          valueFrom:
+             configMapKeyRef:
+                name: spring-boot-bootstrap
+                key: spring.datasource.url
+
+        - name: spring.datasource.username
+          valueFrom:
+             configMapKeyRef:
+                name: spring-boot-bootstrap
+                key: spring.datasource.username
+        - name: spring.datasource.password
+          valueFrom:
+             configMapKeyRef:
+                name: spring-boot-bootstrap
+                key: spring.datasource.password
+
+
+
+

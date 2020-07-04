@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: toystore-secrets-db
+spec:
+  replicas: 1
+  selector:
+    app: toystore-secrets-db
+  template:
+    metadata:
+      name: toystore-secrets-db
+      labels:
+        app: toystore-secrets-db
+    spec:
+      containers:
+      - name: mysql
+        image: ahmedfarouk141414/mysql_toy0store:v1
+        ports:
+        - name: mysql-port
+          containerPort: 3306
+
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: toystore-secrets
+                key: db-password
+

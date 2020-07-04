@@ -3,8 +3,9 @@ pipeline {
   label 'slave'
   }
         environment {
-        //be sure to replace "willbla" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "ahmedfarouk141414/orange"
+       registry = "35.188.180.98:32323/nexus"
+        //DOCKER_IMAGE_NAME = "ahmedfarouk141414/orange"
+        dockerImage = ""
     }
     
   stages {
@@ -19,41 +20,55 @@ pipeline {
               }
         }
     
-     stage('Build Docker Image') {
-         //   when {
-          //      branch 'master'
-          //  }
-            steps {
-                    script {
-                    app = docker.build(DOCKER_IMAGE_NAME)
-            }
-        } 
-     }
+ 
     
-      stage('Push Docker Image') {
-           // when {
-             //   branch 'master'
-         //   }
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
-                    }
-                }
-            }
+
+      stage('Build image') {
+     	 steps{
+      		  script {
+      		    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+      		  }
+      		}
+   	 }
+
+    
+      stage('Push Image') {
+     	 steps{
+      	     script {
+                docker.withRegistry( "" ) {
+                     dockerImage.push()
+          }
         }
+      }
+    }
+
+
+  //  stage('Build Docker Image') {
+          //    steps {
+              //      script {
+                    app = docker.build(DOCKER_IMAGE_NAME)
+          //  }
+      //  } 
+   //  }
+
+      //stage('Push Docker Image') {
+           //  steps {
+             //   script {
+               //     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+                  //      app.push("${env.BUILD_NUMBER}")
+                  //      app.push("latest")
+                    }
+               // }
+          //  }
+    //    }
       
        stage('DeployToProduction') {
-           // when {
-             //   branch 'master'
-          //  }
-            steps {
+               steps {
                 input 'Deploy to Production?'
                 milestone(1)
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube.yml',
+                    configs: 'manifest/spring/deployment.yaml',
                     enableConfigSubstitution: true
                 )
             }

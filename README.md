@@ -24,21 +24,43 @@
   - echo "source <(kubectl completion bash)" >> ~/.bashrc
 
 ## install helm 
- - kubectl apply -f https://raw.githubusercontent.com/ahmedfarouk1414/playjenkins/master/helm.sh ### from my own repo 
+ - kubectl apply -f manifest/helm.sh 
    
-## add slave container as pod that containe custem dependence for java 
-
-
 ## install jenkins from helm 
    - kubectl inspect stable/jenkins > /tmp/jenkins-values
-   - helm install --name jenkins stable/jenkins --namespace build  --values jenkins-values     ### from my repo 
-   
-## create pipline for deployment 
+   - helm install --name jenkins stable/jenkins --namespace build  --values manifest/jenkins-values
+   - add credentials for (kubeconfig && nexus)
 
 ## create nexus 
-    - kubectl apply -f https://raw.githubusercontent.com/ahmedfarouk1414/playjenkins/master/nexus.yaml    ### from myrepo##
+    - kubectl apply -f manifest/nexus.yaml 
 
-## create databases
+    – create a private (hosted) repository for our own images
+    - create user and give permission that will allow to push and pull image 
+    - edit all host worker node configration /etc/docker/daemon.json
+
+  		{
+ 		 "insecure-registries": [
+   		       "your-IP:32323",
+  			],
+  	"disable-legacy-registry": true
+	}
+    - systemctl restart docker)
+ 
+    - docker login -u admin -p admin123 your-IP:32323
+
+
+
+## create pipline for deployment 
+      - agent slave 
+      - staging (Build && Push && Deploy)
+
+## add slave container in separated (pod) that containe custem dependence for java and maven 
+that will use to build and push image also
+   - ahmedfarouk141414/javamavn
+   - add jenkins credentials kind (ssh username with privte key) from mykey file in github installation/mykey 
+   - choose agent slave in pipeline
+
+## create databases and restore backup
   - docker pull mysql/mysql-server:latest
   - docker run --name=mysql -d mysql/mysql-server:latest
   - docker logs 64d781449723 | grep -i pass
@@ -50,7 +72,23 @@
          > create databases toystore
          
   - cat toystore-test.sql  | docker exec -i mysql /usr/bin/mysql -u root --password=ahmed mysql
-  - docker commit mysql mysqldump
+  - docker commit mysql 
   - docker tag mysql  ahmedfarouk141414/toystore:v1
   - docker push  ahmedfarouk141414/toystore:v1
+
+## deployment database myapp 
+
+  - kubectl apply -f manifest/db/   . 
+
+## deployment app myapp 
+  - use env varible in  application.properties and configfile will replace this values 
+
+   	spring.datasource.url=${spring.datasource.url}
+	spring.datasource.username=${spring.datasource.username}
+	spring.datasource.password=${spring.datasource.password}
+
+  - kubectl apply -f manifest/spring/  .
+
+
+
 
