@@ -57,8 +57,8 @@
 
 ## add slave container in separated (pod) that containe custem dependence for java and maven 
 that will use to build and push image also
-   - ahmedfarouk141414/javamavn
-   - add jenkins credentials kind (ssh username with privte key) from mykey file in github installation/mykey 
+   - image name ahmedfarouk141414/javamavn
+   - add jenkins slave credentials kind (ssh username with privte key) from mykey file in github installation/mykey 
    - choose agent slave in pipeline
 
 ## create databases and restore backup
